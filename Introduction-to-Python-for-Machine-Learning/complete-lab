@@ -1,0 +1,146 @@
+Lab 1: Introduction to Python for Machine Learning
+Lab Objective:
+In this lab, you will familiarize yourself with the basics of Python programming and set up the environment for machine learning. You will:
+
+Install Python and essential libraries like NumPy, Pandas, and Matplotlib.
+
+Write basic Python scripts to practice core programming concepts.
+
+Explore basic data types and control structures used in Python.
+
+Prerequisites:
+Start your Al Nafi-provided Ubuntu machine and ensure it is running.
+
+Ensure Python is installed (most modern Linux systems come with Python pre-installed). If it’s not installed, run:
+
+sudo apt update
+sudo apt install python3 python3-pip
+Install essential libraries for machine learning:
+
+pip3 install numpy pandas matplotlib
+NumPy is used for numerical computing (arrays, matrix operations).
+
+Pandas is used for data manipulation and analysis.
+
+Matplotlib is used for data visualization.
+
+Lab Tasks:
+1. Install Python and essential libraries (NumPy, Pandas, Matplotlib):
+
+Ensure Python is installed by checking the version:
+
+python3 --version
+Install the libraries:
+
+pip3 install numpy pandas matplotlib
+Verify that the libraries are installed correctly by importing them in Python:
+
+python3
+>>> import numpy
+>>> import pandas
+>>> import matplotlib
+>>> exit()
+If no errors occur, the libraries are installed and ready for use.
+
+2. Write basic Python scripts:
+
+Create a Python script to practice some basic programming concepts. Open a new Python file:
+
+nano basic_script.py
+Add the following content to practice basic Python programming:
+
+# This is a basic Python script for learning purposes
+
+# Print a welcome message
+print("Hello, welcome to Python for Machine Learning!")
+
+# Variables and basic data types
+x = 10  # Integer
+y = 5.5  # Float
+name = "John"  # String
+
+print(f"Integer value: {x}, Float value: {y}, Name: {name}")
+
+# Perform arithmetic operations
+result = x + y
+print(f"Sum of {x} and {y} is {result}")
+
+# List (array)
+numbers = [1, 2, 3, 4, 5]
+print(f"List of numbers: {numbers}")
+
+# Loop through the list
+for number in numbers:
+    print(f"Number: {number}")
+
+# If-else condition
+if x > y:
+    print(f"{x} is greater than {y}")
+else:
+    print(f"{x} is not greater than {y}")
+Save and exit the file (CTRL + O, then CTRL + X).
+
+Run the script:
+
+python3 basic_script.py
+You should see output similar to:
+
+Hello, welcome to Python for Machine Learning!
+Integer value: 10, Float value: 5.5, Name: John
+Sum of 10 and 5.5 is 15.5
+List of numbers: [1, 2, 3, 4, 5]
+Number: 1
+Number: 2
+Number: 3
+Number: 4
+Number: 5
+10 is greater than 5.5
+3. Explore basic data types and control structures:
+
+In the previous script, you already explored some basic data types (integers, floats, strings, lists) and control structures (loops, if-else conditions).
+
+Let’s explore some other data types and control structures in Python:
+
+Tuple (immutable list):
+
+my_tuple = (1, 2, 3)
+print(f"Tuple: {my_tuple}")
+Dictionary (key-value pairs):
+
+my_dict = {'name': 'Alice', 'age': 25}
+print(f"Dictionary: {my_dict}")
+While loop:
+
+count = 0
+while count < 5:
+    print(f"Count: {count}")
+    count += 1
+Functions:
+
+def greet(name):
+    return f"Hello, {name}!"
+
+print(greet("Alice"))
+Add the above examples to your basic_script.py and run the script again:
+
+python3 basic_script.py
+Expected output:
+
+Tuple: (1, 2, 3)
+Dictionary: {'name': 'Alice', 'age': 25}
+Count: 0
+Count: 1
+Count: 2
+Count: 3
+Count: 4
+Hello, Alice!
+Conclusion:
+In this lab, you have:
+
+Installed Python and the essential libraries (NumPy, Pandas, and Matplotlib) for machine learning.
+
+Wrote a basic Python script to practice essential programming concepts such as variables, data types, control structures (loops, if-else), and functions.
+
+Explored the basic data types and control structures in Python, which are the foundation for more advanced programming and machine learning tasks.
+
+By completing this lab, you are now ready to dive deeper into Python for machine learning tasks, utilizing these fundamental concepts in more complex applications.
