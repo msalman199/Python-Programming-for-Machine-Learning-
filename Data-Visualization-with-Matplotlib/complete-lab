@@ -1,0 +1,130 @@
+Lab 3: Data Visualization with Matplotlib
+Lab Objective:
+In this lab, you will learn how to use Matplotlib, a popular Python library, for data visualization. Specifically, you will:
+
+Plot histograms and scatter plots.
+
+Create line charts and bar charts.
+
+Customize plot aesthetics, such as adding labels, titles, and legends.
+
+Prerequisites:
+Start your Al Nafi-provided Ubuntu machine and ensure it is running.
+
+Ensure you have Python and Matplotlib installed. If not, you can install it using the following command:
+
+pip3 install matplotlib
+Lab Tasks:
+1. Plot histograms and scatter plots:
+
+Create a Python script to plot histograms and scatter plots. Open a new Python file:
+
+nano data_visualization.py
+Add the following content to the file to plot a histogram and scatter plot:
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Create random data
+data = np.random.randn(1000)
+
+# 1. Plot a histogram
+plt.figure(figsize=(8, 6))
+plt.hist(data, bins=30, color='skyblue', edgecolor='black')
+plt.title('Histogram of Random Data')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.show()
+
+# 2. Create a scatter plot
+x = np.random.rand(50)
+y = np.random.rand(50)
+
+plt.figure(figsize=(8, 6))
+plt.scatter(x, y, color='red', edgecolor='black')
+plt.title('Random Scatter Plot')
+plt.xlabel('X Value')
+plt.ylabel('Y Value')
+plt.show()
+Save and exit (CTRL + O, then CTRL + X).
+
+Run the script:
+
+python3 data_visualization.py
+The script will display two plots:
+
+A histogram showing the distribution of random data.
+
+A scatter plot showing the relationship between two sets of random data points.
+
+2. Create line and bar charts:
+
+Now, let’s create a line chart and a bar chart using Matplotlib.
+
+Add the following code to the script:
+
+# 3. Create a line chart
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+plt.figure(figsize=(8, 6))
+plt.plot(x, y, label='sin(x)', color='green', linewidth=2)
+plt.title('Line Chart of sin(x)')
+plt.xlabel('X')
+plt.ylabel('sin(x)')
+plt.legend(loc='upper right')
+plt.grid(True)
+plt.show()
+
+# 4. Create a bar chart
+categories = ['A', 'B', 'C', 'D', 'E']
+values = [3, 7, 2, 5, 4]
+
+plt.figure(figsize=(8, 6))
+plt.bar(categories, values, color='orange', edgecolor='black')
+plt.title('Bar Chart of Categories')
+plt.xlabel('Category')
+plt.ylabel('Value')
+plt.show()
+Save and exit the file.
+
+Run the script again:
+
+python3 data_visualization.py
+The script will display:
+
+A line chart showing the sine function (sin(x)).
+
+A bar chart representing values for different categories.
+
+3. Customize plot aesthetics (labels, title, legend):
+
+Let’s now customize the plot aesthetics by adding labels, titles, and legends to our charts.
+
+The code provided above already demonstrates how to:
+
+Add a title with plt.title().
+
+Label the x-axis and y-axis using plt.xlabel() and plt.ylabel().
+
+Add a legend using plt.legend() (e.g., in the line chart).
+
+Customize colors, line thickness, and other aesthetics.
+
+You can further customize the plots by modifying the attributes:
+
+Line styles (e.g., dashed lines) using linestyle='--' in the plt.plot() function.
+
+Markers in scatter plots using marker='o'.
+
+Conclusion:
+In this lab, you have successfully:
+
+Created a histogram and scatter plot to visualize the distribution and relationships of data.
+
+Generated a line chart and bar chart to display continuous data and categorical comparisons.
+
+Customized plot aesthetics by adding titles, labels, and legends to improve the readability of the visualizations.
+
+Data visualization is a crucial part of any data analysis and machine learning workflow, and by completing this lab, you now have the foundational skills to present your data clearly and effectively using Matplotlib. These techniques will help you understand your data better and communicate your findings more effectively.Xy
+
