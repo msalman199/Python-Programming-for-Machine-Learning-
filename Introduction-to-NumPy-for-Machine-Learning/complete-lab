@@ -1,0 +1,150 @@
+Lab 4: Introduction to NumPy for Machine Learning
+Lab Objective:
+In this lab, you will learn about NumPy, which is one of the most essential libraries for scientific computing and machine learning. Specifically, you will:
+
+Create NumPy arrays and matrices.
+
+Perform array operations and linear algebra calculations.
+
+Implement element-wise operations.
+
+Prerequisites:
+Start your Al Nafi-provided Ubuntu machine and ensure it is running.
+
+Ensure you have Python and NumPy installed. If NumPy is not installed, use the following command:
+
+pip3 install numpy
+Lab Tasks:
+1. Create NumPy arrays and matrices:
+
+First, open a new Python script to start working with NumPy:
+
+nano numpy_intro.py
+Add the following content to create NumPy arrays and matrices:
+
+import numpy as np
+
+# 1. Create a 1D NumPy array
+arr = np.array([1, 2, 3, 4, 5])
+print("1D NumPy Array:")
+print(arr)
+
+# 2. Create a 2D NumPy array (matrix)
+matrix = np.array([[1, 2, 3], [4, 5, 6]])
+print("\n2D NumPy Matrix:")
+print(matrix)
+
+# 3. Create a 3x3 matrix of zeros
+zeros_matrix = np.zeros((3, 3))
+print("\n3x3 Matrix of Zeros:")
+print(zeros_matrix)
+
+# 4. Create a 3x3 matrix of ones
+ones_matrix = np.ones((3, 3))
+print("\n3x3 Matrix of Ones:")
+print(ones_matrix)
+Save and exit the file (CTRL + O, then CTRL + X).
+
+Run the script:
+
+python3 numpy_intro.py
+The script will create and display the following:
+
+A 1D array.
+
+A 2D matrix (2x3 matrix).
+
+A 3x3 matrix of zeros.
+
+A 3x3 matrix of ones.
+
+2. Perform array operations and linear algebra calculations:
+
+Next, we will perform basic array operations and linear algebra calculations, such as addition, multiplication, and matrix dot product.
+
+Add the following code to perform the operations:
+
+# 5. Array addition and subtraction
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([4, 5, 6])
+
+# Adding arrays
+sum_array = arr1 + arr2
+print("\nArray Addition:")
+print(sum_array)
+
+# Subtracting arrays
+diff_array = arr1 - arr2
+print("\nArray Subtraction:")
+print(diff_array)
+
+# 6. Element-wise multiplication
+product_array = arr1 * arr2
+print("\nElement-wise Multiplication:")
+print(product_array)
+
+# 7. Matrix multiplication (dot product)
+matrix1 = np.array([[1, 2], [3, 4]])
+matrix2 = np.array([[5, 6], [7, 8]])
+
+# Dot product (matrix multiplication)
+matrix_product = np.dot(matrix1, matrix2)
+print("\nMatrix Dot Product (Multiplication):")
+print(matrix_product)
+Save and exit the file.
+
+Run the script again:
+
+python3 numpy_intro.py
+You should see:
+
+Array addition and subtraction results.
+
+Element-wise multiplication.
+
+Matrix multiplication (dot product).
+
+3. Implement element-wise operations:
+
+Now, let’s perform element-wise operations, which are common in machine learning tasks. For example, applying a function to each element in a NumPy array.
+
+Add the following code to implement element-wise operations like square, square root, and exponentiation:
+
+# 8. Element-wise square of each element
+square_array = np.square(arr1)
+print("\nElement-wise Square:")
+print(square_array)
+
+# 9. Element-wise square root of each element
+sqrt_array = np.sqrt(arr1)
+print("\nElement-wise Square Root:")
+print(sqrt_array)
+
+# 10. Element-wise exponentiation
+exp_array = np.exp(arr1)
+print("\nElement-wise Exponentiation (e^x):")
+print(exp_array)
+Save and exit the file.
+
+Run the script again:
+
+python3 numpy_intro.py
+You should see:
+
+Element-wise square of the array.
+
+Element-wise square root of the array.
+
+Element-wise exponentiation of the array (calculating exe^x).
+
+Conclusion:
+In this lab, you have:
+
+Created NumPy arrays and matrices, including special matrices such as zeros and ones.
+
+Performed basic array operations (addition, subtraction, element-wise multiplication) and linear algebra calculations (matrix multiplication).
+
+Implemented element-wise operations (such as squaring, taking the square root, and exponentiation).
+
+These foundational skills in NumPy are essential for data manipulation, machine learning, and scientific computing tasks. By completing this lab, you now have the ability to efficiently handle numerical data, perform essential matrix operations, and apply functions to data elements, which are critical steps in building machine learning models.
+
