@@ -1,0 +1,104 @@
+Lab 8: Implementing Decision Trees
+Lab Objective:
+In this lab, you will learn how to implement Decision Tree Classifiers using Scikit-Learn for classification tasks. Specifically, you will:
+
+Implement a decision tree classifier using Scikit-Learn.
+
+Train the model on a classification dataset.
+
+Evaluate the model using accuracy.
+
+Prerequisites:
+Start your Al Nafi-provided Ubuntu machine and ensure it is running.
+
+Ensure Python and Scikit-Learn are installed. If Scikit-Learn is not installed, you can install it using:
+
+pip3 install scikit-learn
+Install NumPy and Matplotlib (if not installed yet) for data manipulation and visualization:
+
+pip3 install numpy matplotlib
+Lab Tasks:
+1. Implement a decision tree classifier using Scikit-Learn:
+
+First, we will implement a decision tree classifier using Scikit-Learn. For this, we will use the Iris dataset, which is a well-known classification dataset.
+
+Create a new Python file:
+
+nano decision_tree_classifier.py
+Add the following content to the file to implement the decision tree classifier:
+
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data  # Features
+y = iris.target  # Target labels
+
+# Split the dataset into training and testing sets (80% training, 20% testing)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize and train the decision tree classifier
+clf = DecisionTreeClassifier(random_state=42)
+clf.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = clf.predict(X_test)
+
+# Display the model’s accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Model Accuracy: {accuracy * 100:.2f}%")
+This script:
+
+Loads the Iris dataset from Scikit-Learn.
+
+Splits the dataset into training and testing sets.
+
+Initializes and trains a decision tree classifier.
+
+Makes predictions on the test set and calculates the accuracy of the model.
+
+Save and exit the file (CTRL + O, then CTRL + X).
+
+Run the script:
+
+python3 decision_tree_classifier.py
+You should see the model’s accuracy on the test set:
+
+Model Accuracy: 100.00%
+2. Train the model on a classification dataset:
+
+In the script above, we used the Iris dataset for classification. The Iris dataset consists of 150 samples of iris flowers, each with 4 features: sepal length, sepal width, petal length, and petal width. The goal is to classify the iris species into three categories: Setosa, Versicolor, and Virginica.
+
+The model was trained on 80% of the data and tested on the remaining 20% (as split by the train_test_split function).
+
+The model learns the decision rules based on these features to classify the flower species.
+
+3. Evaluate the model using accuracy:
+
+The accuracy score is calculated using Scikit-Learn's accuracy_score() function. It measures the proportion of correct predictions made by the model:
+
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Model Accuracy: {accuracy * 100:.2f}%")
+The model’s accuracy indicates how well it performs on the test set. If the accuracy is high (close to 100%), the model is performing well.
+
+After running the script, if you get an accuracy of 100% (as shown above), the model has perfectly classified the test set, which is typical for the Iris dataset due to its well-defined and separable nature.
+
+Conclusion:
+In this lab, you have successfully:
+
+Implemented a decision tree classifier using Scikit-Learn for classification tasks.
+
+Trained the model on the Iris dataset, which contains data on iris flowers and their species.
+
+Evaluated the model’s performance using the accuracy metric.
+
+By completing this lab, you now have an understanding of how to:
+
+Use a decision tree for classification.
+
+Train and evaluate machine learning models using Scikit-Learn.
+
+This is a foundation for more advanced classification tasks and the application of decision tree algorithms to real-world datasets.
