@@ -1,0 +1,138 @@
+Lab 6: Model Evaluation and Validation
+Lab Objective:
+In this lab, you will learn how to evaluate and validate machine learning models using Python. Specifically, you will:
+
+Split data into training and validation sets.
+
+Implement cross-validation.
+
+Evaluate the model’s performance using metrics like Mean Squared Error (MSE).
+
+Prerequisites:
+Start your Al Nafi-provided Ubuntu machine and ensure it is running.
+
+Ensure you have Python, NumPy, and scikit-learn installed. If not, you can install them using:
+
+pip3 install numpy scikit-learn
+Create or load a dataset that will be used for training and evaluation. For this lab, we will use a synthetic dataset for regression tasks.
+
+Lab Tasks:
+1. Split data into training and validation sets:
+
+First, we will create a synthetic dataset and split it into training and validation sets using train_test_split from scikit-learn.
+
+Create a new Python file:
+
+nano model_evaluation.py
+Add the following content to load the dataset and split it:
+
+import numpy as np
+from sklearn.model_selection import train_test_split
+
+# Create a synthetic dataset for regression
+np.random.seed(42)
+X = 2 * np.random.rand(100, 1)  # 100 random data points
+y = 4 + 3 * X + np.random.randn(100, 1)  # Linear relation with some noise
+
+# Split the dataset into training and validation sets (80% training, 20% validation)
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
+
+print("Training set size:", len(X_train))
+print("Validation set size:", len(X_val))
+This script generates 100 data points for a regression task and splits them into 80% for training and 20% for validation.
+
+Save and exit the file (CTRL + O, then CTRL + X).
+
+Run the script:
+
+python3 model_evaluation.py
+The output will display the sizes of the training and validation sets:
+
+Training set size: 80
+Validation set size: 20
+2. Implement cross-validation:
+
+Now, let’s implement k-fold cross-validation to assess the model’s performance across different splits.
+
+We will use KFold from scikit-learn to perform cross-validation:
+
+Add the following code to implement k-fold cross-validation:
+
+from sklearn.model_selection import KFold
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+
+# Initialize the model
+model = LinearRegression()
+
+# Implement 5-fold cross-validation
+kf = KFold(n_splits=5, shuffle=True, random_state=42)
+mse_scores = []
+
+for train_index, val_index in kf.split(X):
+    X_train_cv, X_val_cv = X[train_index], X[val_index]
+    y_train_cv, y_val_cv = y[train_index], y[val_index]
+
+    # Train the model
+    model.fit(X_train_cv, y_train_cv)
+
+    # Make predictions
+    y_pred = model.predict(X_val_cv)
+
+    # Calculate the Mean Squared Error for this fold
+    mse = mean_squared_error(y_val_cv, y_pred)
+    mse_scores.append(mse)
+
+print(f"Mean Squared Error for each fold: {mse_scores}")
+print(f"Average MSE across all folds: {np.mean(mse_scores)}")
+In this script:
+
+KFold(n_splits=5) splits the dataset into 5 parts (folds) for cross-validation.
+
+For each fold, the model is trained on 4 parts and tested on the remaining 1 part.
+
+Mean Squared Error (MSE) is calculated for each fold and averaged across all folds.
+
+Save and exit the file.
+
+Run the script again:
+
+python3 model_evaluation.py
+The output will show the MSE for each fold and the average MSE across all folds:
+
+Mean Squared Error for each fold: [3.032004233303576, 3.2493188472682475, 3.097601936458442, 3.1192423523645206, 3.0368087360713704]
+Average MSE across all folds: 3.107595020293831
+3. Evaluate performance using metrics like Mean Squared Error (MSE):
+
+Finally, we will evaluate the model’s performance using the Mean Squared Error (MSE) on the validation set. We have already implemented this in the cross-validation part, but let’s now focus on the validation set from the initial training-test split.
+
+Add the following code to evaluate the model using MSE on the validation set:
+
+# Train the model on the entire training set
+model.fit(X_train, y_train)
+
+# Make predictions on the validation set
+y_pred_val = model.predict(X_val)
+
+# Calculate the MSE on the validation set
+mse_val = mean_squared_error(y_val, y_pred_val)
+
+print(f"Mean Squared Error on the validation set: {mse_val}")
+Save and exit the file.
+
+Run the script:
+
+python3 model_evaluation.py
+The output will show the MSE for the model on the validation set:
+
+Mean Squared Error on the validation set: 3.0618823327951526
+Conclusion:
+In this lab, you have:
+
+Split the data into training and validation sets using train_test_split.
+
+Implemented k-fold cross-validation to evaluate the model’s performance across different splits of the dataset.
+
+Evaluated the model’s performance using Mean Squared Error (MSE) on the validation set.
+
+By completing this lab, you now have a better understanding of how to evaluate and validate machine learning models. Cross-validation helps to assess the model’s generalizability, and MSE is a common metric for regression models. These techniques are essential for ensuring that the model performs well on unseen data.
