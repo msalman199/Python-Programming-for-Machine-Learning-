@@ -1,0 +1,145 @@
+Lab Material
+Lab 9: Support Vector Machines (SVM)
+Lab Objective:
+In this lab, you will learn how to use Support Vector Machines (SVMs) for classification and regression tasks using Scikit-Learn. Specifically, you will:
+
+Implement SVM using Scikit-Learn.
+
+Train an SVM classifier on a dataset.
+
+Tune SVM parameters for better accuracy.
+
+Prerequisites:
+Start your Al Nafi-provided Ubuntu machine and ensure it is running.
+
+Ensure Python and Scikit-Learn are installed. If Scikit-Learn is not installed, use:
+
+pip3 install scikit-learn
+Install NumPy for data manipulation (if not installed yet):
+
+pip3 install numpy
+Lab Tasks:
+1. Implement SVM using Scikit-Learn:
+
+Support Vector Machines are powerful supervised learning algorithms used for classification and regression tasks. In this part of the lab, we will implement an SVM classifier.
+
+Create a new Python file to implement the SVM:
+
+nano svm_classifier.py
+Add the following content to the file to implement SVM classification using Scikit-Learn:
+
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+
+# Load the Iris dataset
+iris = datasets.load_iris()
+X = iris.data  # Features
+y = iris.target  # Target labels
+
+# Split the dataset into training and testing sets (80% training, 20% testing)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize the SVM classifier with a linear kernel
+model = SVC(kernel='linear', random_state=42)
+
+# Train the SVM classifier
+model.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = model.predict(X_test)
+
+# Evaluate the model's accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Model Accuracy: {accuracy * 100:.2f}%")
+In this script:
+
+We use Iris dataset, a famous classification dataset, and split it into training and testing sets using train_test_split.
+
+The SVC() function initializes the SVM classifier with a linear kernel.
+
+We then train the model and evaluate its performance using accuracy.
+
+Save and exit the file (CTRL + O, then CTRL + X).
+
+Run the script:
+
+python3 svm_classifier.py
+The output will display the model's accuracy on the test set:
+
+Model Accuracy: 100.00%
+2. Train an SVM classifier on a dataset:
+
+In the script above, the model was trained on the Iris dataset using the SVM classifier.
+
+The classifier was trained on 80% of the data and tested on the remaining 20%.
+
+The linear kernel was used in this case, which works well for linearly separable data.
+
+You can explore other datasets and classification tasks by simply replacing the Iris dataset with any other dataset available in Scikit-Learn or your own dataset.
+
+3. Tune SVM parameters for better accuracy:
+
+SVM has several hyperparameters that can be tuned for better performance, including the kernel, C (regularization parameter), and gamma (for non-linear kernels).
+
+Let’s now tune some of these hyperparameters using GridSearchCV for hyperparameter tuning:
+
+Modify the script to include hyperparameter tuning:
+
+from sklearn.model_selection import GridSearchCV
+
+# Define the parameter grid to tune
+param_grid = {
+    'C': [0.1, 1, 10],
+    'kernel': ['linear', 'rbf'],  # Trying both linear and radial basis function (RBF) kernels
+    'gamma': ['scale', 'auto']
+}
+
+# Initialize the SVM classifier
+model = SVC(random_state=42)
+
+# Perform Grid Search with 5-fold cross-validation
+grid_search = GridSearchCV(model, param_grid, cv=5, scoring='accuracy', verbose=1)
+grid_search.fit(X_train, y_train)
+
+# Print the best parameters and best score
+print("Best Parameters:", grid_search.best_params_)
+print("Best Cross-validation Accuracy:", grid_search.best_score_)
+
+# Evaluate the best model on the test set
+best_model = grid_search.best_estimator_
+y_pred = best_model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Model Accuracy after tuning: {accuracy * 100:.2f}%")
+In this code:
+
+GridSearchCV is used to perform an exhaustive search over a parameter grid.
+
+We tune three parameters: C, kernel, and gamma.
+
+The best parameters and the best accuracy from cross-validation are printed.
+
+The best model is then evaluated on the test set.
+
+Save and exit the file.
+
+Run the script again:
+
+python3 svm_classifier.py
+The output will show the best parameters and the improvement in accuracy after tuning:
+
+Fitting 5 folds for each of 12 candidates, totalling 60 fits
+Best Parameters: {'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}
+Best Cross-validation Accuracy: 0.9833333333333333
+Model Accuracy after tuning: 100.00%
+Conclusion:
+In this lab, you have successfully:
+
+Implemented an SVM classifier using Scikit-Learn.
+
+Trained the model on the Iris dataset for classification tasks.
+
+Tuned SVM hyperparameters (C, kernel, and gamma) using GridSearchCV to improve the model’s performance.
+
+Support Vector Machines are powerful and flexible classifiers that can be applied to a wide range of problems, and tuning their hyperparameters is essential for maximizing their performance. By completing this lab, you have gained hands-on experience with SVM and model optimization techniques, which are key skills in machine learning.
