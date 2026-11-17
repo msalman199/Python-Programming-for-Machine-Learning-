@@ -1,0 +1,123 @@
+Lab 7: Introduction to Scikit-Learn
+Lab Objective:
+In this lab, you will get started with Scikit-Learn, a powerful machine learning library in Python. Specifically, you will:
+
+Load a dataset using Scikit-Learn.
+
+Implement linear regression using Scikit-Learn.
+
+Evaluate the model’s performance using appropriate metrics.
+
+Prerequisites:
+Start your Al Nafi-provided Ubuntu machine and ensure it is running.
+
+Ensure you have Python and Scikit-Learn installed. If Scikit-Learn is not installed, run:
+
+pip3 install scikit-learn
+Install NumPy and Matplotlib (if not installed yet) for data manipulation and visualization:
+
+pip3 install numpy matplotlib
+Lab Tasks:
+1. Load a dataset using Scikit-Learn:
+
+Scikit-Learn provides several built-in datasets that we can use for machine learning tasks. For this lab, we will use the California housing dataset for regression tasks.
+
+Create a new Python file:
+
+nano scikit_learn_intro.py
+Add the following content to the file to load the dataset:
+
+from sklearn.datasets import fetch_california_housing
+import pandas as pd
+
+# Load the California housing dataset
+data = fetch_california_housing()
+
+# Convert it into a Pandas DataFrame for easier inspection
+df = pd.DataFrame(data.data, columns=data.feature_names)
+
+# Add the target column to the DataFrame
+df['target'] = data.target
+
+# Display the first few rows of the dataset
+print(df.head())
+Save and exit the file (CTRL + O, then CTRL + X).
+
+Run the script:
+
+python3 scikit_learn_intro.py
+The dataset will be loaded, and the first few rows will be displayed, showing features such as MedInc, HouseAge, AveRooms, etc., along with the target variable (target, which is the median house value for California districts).
+
+2. Implement linear regression with Scikit-Learn:
+
+Now, let's implement linear regression using Scikit-Learn. We will use the California housing dataset and train a linear regression model.
+
+Add the following content to implement linear regression:
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+
+# Split the dataset into features (X) and target (y)
+X = df.drop('target', axis=1)
+y = df['target']
+
+# Split the dataset into training and testing sets (80% training, 20% testing)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize and train the linear regression model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = model.predict(X_test)
+
+# Display the model coefficients (weights)
+print(f"Model Coefficients: {model.coef_}")
+print(f"Model Intercept: {model.intercept_}")
+Save and exit the file.
+
+Run the script:
+
+python3 scikit_learn_intro.py
+The model coefficients and the intercept of the linear regression model will be displayed. These values represent the learned parameters of the linear regression equation y=mx+by = mx + b, where mm are the model coefficients, and bb is the intercept.
+
+3. Evaluate model performance:
+
+To evaluate the performance of the linear regression model, we will use the Mean Squared Error (MSE) and R-squared metrics.
+
+Add the following code to evaluate the model’s performance:
+
+# Calculate Mean Squared Error (MSE)
+mse = mean_squared_error(y_test, y_pred)
+print(f"Mean Squared Error (MSE): {mse}")
+
+# Calculate R-squared score
+r2_score = model.score(X_test, y_test)
+print(f"R-squared score: {r2_score}")
+MSE (Mean Squared Error) measures the average squared difference between actual and predicted values. A lower MSE indicates a better fit of the model to the data.
+
+R-squared score measures how well the model explains the variance in the data. An R-squared value close to 1 indicates a good fit.
+
+Save and exit the file.
+
+Run the script again:
+
+python3 scikit_learn_intro.py
+The output will display the MSE and R-squared score for the model:
+
+Model Coefficients: [ -0.37846627   0.02959157   0.13301868   0.12384924  -0.00334188   0.07785949   0.00435376   0.05664802]
+Model Intercept: 2.0679070108101997
+Mean Squared Error (MSE): 0.574509230625971
+R-squared score: 0.6083017974905105
+Conclusion:
+In this lab, you have successfully:
+
+Loaded a dataset using Scikit-Learn's built-in datasets.
+
+Implemented linear regression using Scikit-Learn and trained the model on the dataset.
+
+Evaluated the model’s performance using Mean Squared Error (MSE) and R-squared score.
+
+By completing this lab, you now understand how to use Scikit-Learn to implement a linear regression model and evaluate its performance. This is the foundation for building more complex models and understanding how well they fit your data.Xy
+
