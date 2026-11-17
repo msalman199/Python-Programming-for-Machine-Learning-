@@ -1,0 +1,112 @@
+Lab 5: Implementing Linear Regression
+Lab Objective:
+In this lab, you will learn how to implement Linear Regression from scratch using Python and NumPy. You will:
+
+Implement linear regression using NumPy.
+
+Train the model on a dataset.
+
+Evaluate the model’s performance using basic metrics.
+
+Prerequisites:
+Start your Al Nafi-provided Ubuntu machine and ensure it is running.
+
+Ensure you have Python and NumPy installed. If NumPy is not installed, use:
+
+pip3 install numpy
+Download or create a simple dataset to use for training. For this lab, we will create a simple dataset with two variables: X (independent) and y (dependent).
+
+Lab Tasks:
+1. Implement linear regression from scratch using NumPy:
+
+Create a Python script for implementing Linear Regression. Open a new file:
+
+nano linear_regression.py
+Add the following content to the file to implement Linear Regression:
+
+import numpy as np
+
+# 1. Implement linear regression using NumPy
+
+def linear_regression(X, y):
+    # Add a column of ones to X for the bias term (intercept)
+    X_b = np.c_[np.ones((X.shape[0], 1)), X]
+
+    # Calculate the parameters using the Normal Equation: θ = (X'X)^(-1) X'y
+    theta = np.linalg.inv(X_b.T.dot(X_b)).dot(X_b.T).dot(y)
+
+    return theta
+
+# 2. Create a simple dataset
+np.random.seed(42)  # For reproducibility
+X = 2 * np.random.rand(100, 1)  # 100 random data points
+y = 4 + 3 * X + np.random.randn(100, 1)  # Linear relation with some noise
+
+# 3. Train the model
+theta = linear_regression(X, y)
+
+print(f"Calculated model parameters (theta): {theta}")
+Save and exit the file (CTRL + O, then CTRL + X).
+
+In the code above:
+
+linear_regression(X, y) computes the model parameters using the Normal Equation: θ=(XTX)−1XTy\theta = (X^T X)^{-1} X^T y.
+
+X is the input feature (independent variable).
+
+y is the target variable (dependent variable).
+
+np.c_[np.ones((X.shape[0], 1)), X] adds a bias term (intercept) to the feature matrix.
+
+Run the script:
+
+python3 linear_regression.py
+You should see the calculated model parameters (theta) printed, which represent the intercept and slope of the linear regression line.
+
+2. Train a model on a dataset:
+
+The dataset we created in the script above consists of 100 random data points and their corresponding labels generated using a linear relationship y=4+3Xy = 4 + 3X with some noise.
+
+You already trained the linear regression model in the previous step using the Normal Equation.
+
+The training process is completed with the line:
+
+theta = linear_regression(X, y)
+The parameters (theta values) are printed after training. These values are the intercept and slope of the line that best fits the data.
+
+3. Evaluate the model’s performance:
+
+To evaluate the model’s performance, we can use the Mean Squared Error (MSE) metric, which is common for regression tasks.
+
+Add the following code to the script to compute the MSE:
+
+# 4. Evaluate the model's performance using Mean Squared Error (MSE)
+
+def mean_squared_error(y_true, y_pred):
+    return ((y_true - y_pred) ** 2).mean()
+
+# Predict the values of y using the model
+X_b = np.c_[np.ones((X.shape[0], 1)), X]  # Add the bias term
+y_pred = X_b.dot(theta)
+
+# Calculate the MSE
+mse = mean_squared_error(y, y_pred)
+
+print(f"Mean Squared Error (MSE): {mse}")
+Save and exit the file.
+
+Run the script again:
+
+python3 linear_regression.py
+The script will now output the Mean Squared Error (MSE), which is a measure of the model’s performance. The lower the MSE, the better the model fits the data.
+
+Conclusion:
+In this lab, you have:
+
+Implemented Linear Regression from scratch using NumPy and the Normal Equation.
+
+Trained a model on a simple dataset where the target variable has a linear relationship with the feature.
+
+Evaluated the model’s performance using the Mean Squared Error (MSE) metric.
+
+Linear regression is one of the simplest and most fundamental algorithms in machine learning. By implementing it from scratch, you gained a deeper understanding of the underlying mathematics and how machine learning models are trained and evaluated. This foundation will help you as you progress to more complex algorithms and techniques in machine learning.
