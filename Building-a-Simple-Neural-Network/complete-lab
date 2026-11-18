@@ -1,0 +1,137 @@
+ab 10: Building a Simple Neural Network
+Lab Objective:
+In this lab, you will learn how to build and train a simple neural network using TensorFlow and Keras for a classification task. Specifically, you will:
+
+Install TensorFlow and Keras.
+
+Build and train a simple neural network for classification.
+
+Evaluate the performance of the neural network.
+
+Prerequisites:
+Start your Al Nafi-provided Ubuntu machine and ensure it is running.
+
+Ensure Python is installed, along with pip for installing the required libraries.
+
+To check Python and pip versions:
+
+python3 --version
+pip3 --version
+Install TensorFlow and Keras:
+
+pip3 install tensorflow
+This will install TensorFlow (which includes Keras as a high-level API).
+
+Ensure NumPy and Matplotlib are installed:
+
+pip3 install numpy matplotlib
+Lab Tasks:
+1. Install TensorFlow and Keras:
+
+As mentioned earlier, TensorFlow includes Keras, so installing TensorFlow will also install Keras. You can verify the installation by importing TensorFlow in a Python shell:
+
+python3
+>>> import tensorflow as tf
+>>> print(tf.__version__)
+>>> exit()
+This should output the TensorFlow version number, indicating that the installation was successful.
+
+2. Build and train a simple neural network:
+
+We will use the Iris dataset for a classification task, where the goal is to classify iris species based on their features.
+
+Create a new Python script to build and train the neural network:
+
+nano neural_network.py
+Add the following content to the file to load the Iris dataset, build the neural network, and train it:
+
+import tensorflow as tf
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.metrics import accuracy_score
+import numpy as np
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data  # Features
+y = iris.target  # Labels
+
+# One-hot encode the labels (since this is a multi-class classification problem)
+encoder = OneHotEncoder(sparse=False)
+y_onehot = encoder.fit_transform(y.reshape(-1, 1))
+
+# Split the dataset into training and testing sets (80% training, 20% testing)
+X_train, X_test, y_train, y_test = train_test_split(X, y_onehot, test_size=0.2, random_state=42)
+
+# Build a simple neural network model using Keras
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(32, activation='relu', input_shape=(X_train.shape[1],)),
+    tf.keras.layers.Dense(32, activation='relu'),
+    tf.keras.layers.Dense(3, activation='softmax')  # 3 output neurons for 3 classes (Iris species)
+])
+
+# Compile the model
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+# Train the model
+model.fit(X_train, y_train, epochs=50, batch_size=16, verbose=1)
+
+# Evaluate the model on the test set
+test_loss, test_acc = model.evaluate(X_test, y_test)
+print(f"Test accuracy: {test_acc * 100:.2f}%")
+
+# Make predictions
+y_pred = model.predict(X_test)
+y_pred_classes = np.argmax(y_pred, axis=1)
+y_test_classes = np.argmax(y_test, axis=1)
+
+# Calculate accuracy using sklearn
+accuracy = accuracy_score(y_test_classes, y_pred_classes)
+print(f"Accuracy on test set (sklearn): {accuracy * 100:.2f}%")
+This script:
+
+Loads the Iris dataset and one-hot encodes the labels (since this is a multi-class classification problem).
+
+Splits the data into training and test sets.
+
+Builds a simple neural network with 2 hidden layers using Keras.
+
+Compiles the model using the Adam optimizer and categorical crossentropy loss (appropriate for multi-class classification).
+
+Trains the model for 50 epochs and evaluates its performance on the test set.
+
+Calculates the accuracy on the test set using both TensorFlow's built-in method and sklearn.
+
+Save and exit the file (CTRL + O, then CTRL + X).
+
+3. Evaluate the performance of the neural network:
+
+The accuracy of the model is printed during the training process and also evaluated after training using the test set.
+
+Run the script:
+
+python3 neural_network.py
+The output should look like this (depending on your setup and model):
+
+Epoch 1/50
+4/4 [==============================] - 0s 8ms/step - loss: 1.0727 - accuracy: 0.3333
+Epoch 2/50
+4/4 [==============================] - 0s 6ms/step - loss: 0.9841 - accuracy: 0.3917
+...
+Epoch 50/50
+4/4 [==============================] - 0s 5ms/step - loss: 0.0242 - accuracy: 1.0000
+Test accuracy: 100.00%
+Accuracy on test set (sklearn): 1.00
+You will see the training accuracy after each epoch and the test accuracy at the end. If the model is performing well, the accuracy should be close to 100%.
+
+Conclusion:
+In this lab, you have successfully:
+
+Installed TensorFlow and Keras.
+
+Built and trained a simple neural network for classification using the Iris dataset.
+
+Evaluated the neural network's performance on the test set using accuracy.
+
+By completing this lab, you now have hands-on experience with building and training neural networks for classification tasks using TensorFlow and Keras, which is a fundamental step in machine learning.
